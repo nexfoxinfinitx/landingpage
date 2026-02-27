@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Starter.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="../index.html" class="logo">Starter<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="workflow.html">Process</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="btn btn-sm">Contact Us</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>Have a project in mind or just want to say hello? Fill out the form below and we'll get back to you within 24 hours.</p>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="page-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Form -->
+        <form class="contact-form" onsubmit="handleContactSubmit(event)">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Email Address" required />
+          <select>
+            <option value="" disabled selected>Project Type</option>
+            <option value="landing">Landing Page</option>
+            <option value="ecommerce">E-Commerce</option>
+            <option value="saas">SaaS / Web App</option>
+            <option value="redesign">Redesign</option>
+            <option value="other">Other</option>
+          </select>
+          <input type="text" placeholder="Estimated Budget (optional)" />
+          <textarea placeholder="Tell us about your project..."></textarea>
+          <button type="submit" class="btn btn-lg">Send Message</button>
+        </form>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Other ways to reach us</h3>
+          <p>Prefer a more direct approach? Here's how you can find us.</p>
+
+          <div class="contact-detail">
+            <strong>Email</strong>
+            <span>hello@starter.agency</span>
+          </div>
+          <div class="contact-detail">
+            <strong>Phone</strong>
+            <span>+1 (555) 123-4567</span>
+          </div>
+          <div class="contact-detail">
+            <strong>Office</strong>
+            <span>123 Digital Ave, Suite 400<br />San Francisco, CA 94105</span>
+          </div>
+          <div class="contact-detail">
+            <strong>Hours</strong>
+            <span>Mon – Fri, 9:00 AM – 6:00 PM PST</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="../index.html" class="logo">Starter<span>.</span></a>
+      <div class="footer-links">
+        <a href="../index.html#services">Services</a>
+        <a href="portfolio.html">Work</a>
+        <a href="workflow.html">Process</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+      </div>
+      <p class="copyright">&copy; 2026 Starter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>
