@@ -14,87 +14,15 @@ export function render() {
       </div>
     </header>
 
-    <!-- Portfolio Grid -->
+    <!-- Templates -->
     <section class="page-section">
       <div class="container">
-        <div class="portfolio-grid">
-
-          <a href="#/project/flowstate" class="portfolio-card">
-            <div class="portfolio-thumb">Project Screenshot</div>
-            <div class="portfolio-info">
-              <h3>Flowstate SaaS Platform</h3>
-              <p>A complete redesign and rebuild of a project management SaaS used by 10,000+ teams.</p>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">SaaS</span>
-                <span class="portfolio-tag">UI/UX</span>
-                <span class="portfolio-tag">Full-Stack</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="#/project/novatech" class="portfolio-card">
-            <div class="portfolio-thumb">Project Screenshot</div>
-            <div class="portfolio-info">
-              <h3>NovaTech E-Commerce</h3>
-              <p>A premium online store for a consumer electronics brand with 300+ SKUs.</p>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">E-Commerce</span>
-                <span class="portfolio-tag">Shopify</span>
-                <span class="portfolio-tag">Branding</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="#/project/pixelworks" class="portfolio-card">
-            <div class="portfolio-thumb">Project Screenshot</div>
-            <div class="portfolio-info">
-              <h3>Pixelworks Portfolio</h3>
-              <p>A minimal, animation-rich portfolio site for an award-winning design studio.</p>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Landing Page</span>
-                <span class="portfolio-tag">Animation</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="#/project/medconnect" class="portfolio-card">
-            <div class="portfolio-thumb">Project Screenshot</div>
-            <div class="portfolio-info">
-              <h3>MedConnect Health Portal</h3>
-              <p>A patient-facing portal with appointment booking, records access, and telehealth integration.</p>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Healthcare</span>
-                <span class="portfolio-tag">Web App</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="#/project/finedge" class="portfolio-card">
-            <div class="portfolio-thumb">Project Screenshot</div>
-            <div class="portfolio-info">
-              <h3>FinEdge Dashboard</h3>
-              <p>A real-time analytics dashboard for a fintech startup tracking portfolio performance.</p>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Fintech</span>
-                <span class="portfolio-tag">Dashboard</span>
-                <span class="portfolio-tag">Data Viz</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="#/project/greenroots" class="portfolio-card">
-            <div class="portfolio-thumb">Project Screenshot</div>
-            <div class="portfolio-info">
-              <h3>GreenRoots Non-Profit</h3>
-              <p>A donation-driven website for an environmental non-profit, built for speed and accessibility.</p>
-              <div class="portfolio-tags">
-                <span class="portfolio-tag">Non-Profit</span>
-                <span class="portfolio-tag">Accessibility</span>
-              </div>
-            </div>
-          </a>
-
-        </div>
+        <a href="#/template-1" class="portfolio-card-landscape">
+          <div class="portfolio-thumb-landscape">Template Preview</div>
+          <div class="portfolio-info-landscape">
+            <h3>Template 1</h3>
+          </div>
+        </a>
       </div>
     </section>
 
