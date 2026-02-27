@@ -22,5 +22,8 @@
   "homepage": "https://github.com/nexfoxinfinitx/landingpage#readme",
   "devDependencies": {
     "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "motion": "^12.34.3"
   }
 }
