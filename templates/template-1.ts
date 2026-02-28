@@ -64,13 +64,17 @@ export function render(): (() => void) | void {
         <source src="/assets/videos/background.mp4" type="video/mp4">
       </video>
       <div class="container template-1-content-inner">
-        <h1>Your Content Here</h1>
+        <h1 class="content-heading">
+          <span class="content-letter">Y</span><span class="content-letter">O</span><span class="content-letter">U</span><span class="content-letter">R</span><span class="rc-space">&nbsp;</span><span class="content-letter">C</span><span class="content-letter">O</span><span class="content-letter">N</span><span class="content-letter">T</span><span class="content-letter">E</span><span class="content-letter">N</span><span class="content-letter">T</span><span class="rc-space">&nbsp;</span><span class="content-letter">H</span><span class="content-letter">E</span><span class="content-letter">R</span><span class="content-letter">E</span>
+        </h1>
         <p>This section appears after the 3D model transition.</p>
       </div>
     </section>
     <section class="template-1-vault">
       <div class="template-1-vault-inner">
-        <h1>The Vault</h1>
+        <h1 class="vault-heading">
+          <span class="vault-letter">T</span><span class="vault-letter">H</span><span class="vault-letter">E</span><span class="rc-space">&nbsp;</span><span class="vault-letter">V</span><span class="vault-letter">A</span><span class="vault-letter">U</span><span class="vault-letter">L</span><span class="vault-letter">T</span>
+        </h1>
         <div class="vault-cards-track">
           <div class="vault-card">
             <div class="vault-card-flipper">
@@ -116,7 +120,11 @@ export function render(): (() => void) | void {
         <img class="section-divider" src="/assets/images/divider1.png" alt="">
         <div class="showcase-content"></div>
       </div>
-      <div class="showcase-extra"></div>
+      <div class="showcase-extra">
+        <h1 class="raw-culture-heading">
+          <span class="rc-letter">R</span><span class="rc-letter">A</span><span class="rc-letter">W</span><span class="rc-space">&nbsp;</span><span class="rc-letter">C</span><span class="rc-letter">U</span><span class="rc-letter">L</span><span class="rc-letter">T</span><span class="rc-letter">U</span><span class="rc-letter">R</span><span class="rc-letter">E</span>
+        </h1>
+      </div>
     </section>
   `;
 
@@ -223,11 +231,27 @@ export function render(): (() => void) | void {
       '<'
     );
 
+    // Phase 2b: stagger each letter of YOUR CONTENT HERE sliding down
+    const contentLetters = document.querySelectorAll('.content-letter');
+    scrollTimeline.fromTo(contentLetters,
+      { y: -120, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' },
+      '<+=0.5'
+    );
+
     // Phase 3: slide vault section up over content
     const vaultSection = document.querySelector('.template-1-vault') as HTMLElement;
     scrollTimeline.fromTo(vaultSection,
       { yPercent: 100 },
       { yPercent: 0, duration: 2, ease: 'power2.inOut' },
+    );
+
+    // Phase 3b: stagger each letter of THE VAULT sliding down
+    const vaultLetters = document.querySelectorAll('.vault-letter');
+    scrollTimeline.fromTo(vaultLetters,
+      { y: -120, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out' },
+      '<+=0.5'
     );
 
     // Phase 4: horizontal scroll cards from right to left
@@ -257,6 +281,14 @@ export function render(): (() => void) | void {
       duration: 2,
       ease: 'power2.inOut',
     });
+
+    // Phase 6b: stagger each letter of RAW CULTURE sliding down as extra section is revealed
+    const rcLetters = document.querySelectorAll('.rc-letter');
+    scrollTimeline.fromTo(rcLetters,
+      { y: -120, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out' },
+      '<+=0.3'
+    );
   });
 
   // --- Particles background ---
