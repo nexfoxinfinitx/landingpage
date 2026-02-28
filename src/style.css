@@ -802,6 +802,17 @@ img {
   background: #fdf6e3;
 }
 
+.section-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  display: block;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .vault-cards-track {
   display: flex;
   gap: 28px;

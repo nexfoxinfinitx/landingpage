@@ -111,7 +111,9 @@ export function render(): (() => void) | void {
         </div>
       </div>
     </section>
-    <section class="template-1-showcase"></section>
+    <section class="template-1-showcase">
+      <img class="section-divider" src="/assets/images/divider 1.png" alt="">
+    </section>
   `;
 
   const canvas = document.getElementById('template1Canvas') as HTMLCanvasElement;
