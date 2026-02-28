@@ -112,7 +112,11 @@ export function render(): (() => void) | void {
       </div>
     </section>
     <section class="template-1-showcase">
-      <img class="section-divider" src="/assets/images/divider 1.png" alt="">
+      <div class="showcase-first-screen">
+        <img class="section-divider" src="/assets/images/divider1.png" alt="">
+        <div class="showcase-content"></div>
+      </div>
+      <div class="showcase-extra"></div>
     </section>
   `;
 
@@ -242,10 +246,17 @@ export function render(): (() => void) | void {
       ease: 'power2.inOut',
     });
     scrollTimeline.fromTo(showcaseSection,
-      { xPercent: 100 },
-      { xPercent: 0, duration: 2, ease: 'power2.inOut' },
+      { x: window.innerWidth },
+      { x: 0, duration: 2, ease: 'power2.inOut' },
       '<'
     );
+
+    // Phase 6: slide showcase left by 100vw to reveal extra section
+    scrollTimeline.to(showcaseSection, {
+      x: -window.innerWidth,
+      duration: 2,
+      ease: 'power2.inOut',
+    });
   });
 
   // --- Particles background ---
