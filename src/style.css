@@ -692,12 +692,13 @@ img {
 
 /* ───────── Template 1 ───────── */
 .template-1-page {
-  min-height: 1500vh;
+  /* Provide a large scrolling area to trigger the scrollTimeline */
   position: relative;
+  z-index: 1;
 }
 
 #particlesCanvas {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -707,7 +708,7 @@ img {
 }
 
 #template1Canvas {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -717,7 +718,7 @@ img {
 }
 
 .template-1-content {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -766,7 +767,7 @@ img {
 }
 
 .template-1-vault {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -794,7 +795,7 @@ img {
 }
 
 .template-1-showcase {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 200vw;
@@ -856,8 +857,134 @@ img {
   background: #fdf6e3;
   margin-left: -2px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding-top: 8vh;
+  padding-bottom: 6vh;
+  transition: background-color 0.5s ease;
+  position: relative;
+}
+
+.showcase-extra.cards-assembled:has(.stacked-card:hover) {
+  background-color: #d8cba9;
+}
+
+.showcase-extra.cards-assembled:has(.stacked-card:hover) .raw-culture-heading {
+  opacity: 0.6;
+}
+
+.stacked-cards {
+  position: relative;
+  width: 340px;
+  height: 200px;
+  /* overflow: hidden; removed to allow spreading the cards */
+}
+
+.view-all-wrapper {
+  position: absolute;
+  bottom: 8vh;
+  left: 0;
+  right: 0;
+  display: flex;
   justify-content: center;
+  z-index: 20;
+  opacity: 0;
+  /* Handled by GSAP */
+}
+
+.view-all-wrapper .btn-outline {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 16px 36px;
+  font-size: 1.1rem;
+  border-width: 2px;
+  border-radius: 50px;
+  background: transparent;
+  backdrop-filter: blur(4px);
+}
+
+.view-all-wrapper .btn-outline:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.stacked-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 300px;
+  height: 400px;
+  opacity: 0;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+/* Enable pointer events only after assembly to allow hover effects */
+.showcase-extra.cards-assembled .stacked-card {
+  cursor: pointer;
+}
+
+.showcase-extra.cards-assembled .stacked-cards:has(.stacked-card:hover) .stacked-card:not(:hover) {
+  opacity: 0.7;
+  filter: blur(2px) brightness(0.8);
+}
+
+.showcase-extra.cards-assembled .stacked-card:hover {
+  z-index: 10 !important;
+}
+
+.stacked-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.stacked-card-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.showcase-extra.cards-assembled .stacked-card:hover .stacked-card-inner {
+  transform: scale(1.08) translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  background: rgba(40, 40, 40, 0.95);
+}
+
+.showcase-extra.cards-assembled .stacked-card:hover .stacked-card-inner img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.stacked-card:nth-child(1) {
+  z-index: 4;
+}
+
+.stacked-card:nth-child(2) {
+  z-index: 3;
+  transform: translateY(-12px) scale(0.95);
+}
+
+.stacked-card:nth-child(3) {
+  z-index: 2;
+  transform: translateY(-24px) scale(0.90);
+}
+
+.stacked-card:nth-child(4) {
+  z-index: 1;
+  transform: translateY(-36px) scale(0.85);
 }
 
 .vault-cards-track {
@@ -1329,4 +1456,177 @@ img {
   .page-header {
     padding: 120px 0 40px;
   }
+}
+
+/* ───────── Template 1 Footer ───────── */
+.template-1-footer {
+  position: relative;
+  width: 100%;
+  background: #fdf6e3;
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.footer-policies {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vh 4vw;
+  background: #fdf6e3;
+}
+
+.policy-heading {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.policy-cards {
+  display: flex;
+  gap: 1.5vw;
+}
+
+.policy-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #c4c4c4;
+  padding: 16px 24px;
+  background: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.policy-icon {
+  width: 24px;
+  height: 24px;
+  color: #666;
+}
+
+.footer-marquee {
+  background: #000;
+  color: #fff;
+  padding: 12px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  /* Animate half the width to seamlessly loop assuming enough duplicated items */
+  animation: scroll-left 25s linear infinite;
+  padding-left: 3rem;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  padding: 8vh 4vw;
+  flex: 1;
+  background: #fdf6e3;
+}
+
+.footer-col-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 400px;
+}
+
+.footer-logo {
+  font-family: 'Georgia', serif;
+  font-size: clamp(4rem, 10vw, 7.5rem);
+  font-style: italic;
+  font-weight: 800;
+  color: #191b40;
+  /* Navy-ish tint */
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.footer-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.footer-col-links {
+  display: flex;
+  gap: 12vw;
+  padding-top: 2vh;
+  padding-right: 15vw;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-nav h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-nav a {
+  color: #555;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #1a1a1a;
+  text-decoration: underline;
 }

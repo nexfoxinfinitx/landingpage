@@ -55,10 +55,9 @@ export function render(): (() => void) | void {
   const app = document.getElementById('app') as HTMLElement;
 
   app.innerHTML = `
-    <div class="template-1-page">
+    <div class="template-1-pinned-container" style="width: 100vw; height: 100vh; overflow: hidden; position: relative;">
       <canvas id="particlesCanvas"></canvas>
       <canvas id="template1Canvas"></canvas>
-    </div>
     <section class="template-1-content">
       <video class="content-bg-video" autoplay muted loop playsinline>
         <source src="/assets/videos/background.mp4" type="video/mp4">
@@ -124,9 +123,125 @@ export function render(): (() => void) | void {
         <h1 class="raw-culture-heading">
           <span class="rc-letter">R</span><span class="rc-letter">A</span><span class="rc-letter">W</span><span class="rc-space">&nbsp;</span><span class="rc-letter">C</span><span class="rc-letter">U</span><span class="rc-letter">L</span><span class="rc-letter">T</span><span class="rc-letter">U</span><span class="rc-letter">R</span><span class="rc-letter">E</span>
         </h1>
+        <div class="stacked-cards">
+          <div class="stacked-card">
+            <div class="stacked-card-inner">
+              <img src="/assets/images/cloth 1.jpeg" alt="">
+            </div>
+          </div>
+          <div class="stacked-card">
+            <div class="stacked-card-inner">
+              <img src="/assets/images/cloth 2.jpeg" alt="">
+            </div>
+          </div>
+          <div class="stacked-card">
+            <div class="stacked-card-inner">
+              <img src="/assets/images/cloth 3.jpeg" alt="">
+            </div>
+          </div>
+          <div class="stacked-card">
+            <div class="stacked-card-inner">
+              <img src="/assets/images/cloth 4.jpeg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="view-all-wrapper">
+          <a href="/products" class="btn btn-outline view-all-btn">VIEW ALL PRODUCTS</a>
+        </div>
       </div>
     </section>
+    </div> <!-- end template-1-pinned-container -->
   `;
+
+  // Render the footer after the pinned container
+  const footerEl = document.createElement('section');
+  footerEl.className = 'template-1-footer';
+  footerEl.innerHTML = `
+      <div class="footer-policies">
+        <h2 class="policy-heading">our policies are top-notch</h2>
+        <div class="policy-cards">
+          <div class="policy-card">
+            <svg class="policy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h11V4a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h1m11 0h3a2 2 0 002-2v-4l-3-4h-3M5 18a2 2 0 100-4 2 2 0 000 4zm11 0a2 2 0 100-4 2 2 0 000 4zM2 12h3M16 12h-5"/></svg>
+            <span>Free shipping</span>
+          </div>
+          <div class="policy-card">
+            <svg class="policy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <span>Easy Return</span>
+          </div>
+          <div class="policy-card">
+            <svg class="policy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Support 24/7</span>
+          </div>
+          <div class="policy-card">
+            <svg class="policy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2" ry="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Secure checkout</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-marquee banner-top">
+        <div class="marquee-track">
+          <span>Wear it your way</span>
+          <span>Comfort meets culture</span>
+          <span>Fits you. Moves with you.</span>
+          <span>Wear it your way</span>
+          <span>Comfort meets culture</span>
+          <span>Fits you. Moves with you.</span>
+          <span>Wear it your way</span>
+          <span>Comfort meets culture</span>
+          <span>Fits you. Moves with you.</span>
+          <span>Wear it your way</span>
+          <span>Comfort meets culture</span>
+          <span>Fits you. Moves with you.</span>
+        </div>
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-col-logo">
+          <h1 class="footer-logo">HOSTELTECH</h1>
+          <div class="footer-bottom-info">
+            <div class="footer-socials">
+              <a href="#">&#9679;</a>
+              <a href="#">&#9676;</a>
+              <a href="#">&#9654;</a>
+            </div>
+            <p class="footer-copyright">© 2025 HOSTELTECH, ALL RIGHTS RESERVED</p>
+          </div>
+        </div>
+        <div class="footer-col-links">
+          <div class="footer-nav">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Refund Policy</a></li>
+              <li><a href="#">Shipping Policy</a></li>
+              <li><a href="#">Track Your Order</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">Our Story</a></li>
+              <li><a href="#">Contact & FAQ</a></li>
+              <li><a href="#">Shipping & Delivery</a></li>
+              <li><a href="#">LOL Community</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-marquee banner-bottom">
+        <div class="marquee-track">
+          <span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span>
+          <span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span>
+          <span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span>
+          <span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span><span>With thanks, HOSTELTECH.</span>
+        </div>
+      </div>
+  `;
+
+  app.appendChild(footerEl);
 
   const canvas = document.getElementById('template1Canvas') as HTMLCanvasElement;
   const scene = new THREE.Scene();
@@ -187,9 +302,10 @@ export function render(): (() => void) | void {
 
     scrollTimeline = gsap.timeline({
       scrollTrigger: {
-        trigger: '.template-1-page',
+        trigger: '.template-1-pinned-container',
+        pin: true,
         start: 'top top',
-        end: 'bottom bottom',
+        end: '+=15000',
         scrub: 0.8,
       },
     });
@@ -288,6 +404,39 @@ export function render(): (() => void) | void {
       { y: -120, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out' },
       '<+=0.3'
+    );
+
+    // Phase 7: stacked cards slide up one by one from the bottom
+    const stackedCards = document.querySelectorAll('.stacked-card');
+    scrollTimeline.fromTo(stackedCards,
+      { y: 300, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, stagger: 0.4, ease: 'power3.out' },
+    );
+
+    // Phase 8: slide up one by one and assemble from left to right
+    scrollTimeline.to(stackedCards, {
+      x: (index) => (index - 1.5) * 320,
+      y: -420,
+      scale: 1,
+      duration: 1.2,
+      stagger: 0.3,
+      ease: 'power3.inOut',
+      onComplete: () => {
+        const showcaseExtra = document.querySelector('.showcase-extra');
+        showcaseExtra?.classList.add('cards-assembled');
+      },
+      onReverseComplete: () => {
+        const showcaseExtra = document.querySelector('.showcase-extra');
+        showcaseExtra?.classList.remove('cards-assembled');
+      }
+    });
+
+    // Phase 9: fade in the 'View All Products' button below the cards
+    const viewAllBtn = document.querySelector('.view-all-wrapper');
+    scrollTimeline.fromTo(viewAllBtn,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
+      '+=0.2'
     );
   });
 
