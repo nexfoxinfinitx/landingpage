@@ -1,79 +1,57 @@
-// Shared Navbar and Footer components
+// Shared Navbar
+import gsap from 'gsap';
 
 export function renderNavbar() {
   return `
-  <nav class="navbar">
+  <nav class="navbar landing-navbar">
     <div class="container navbar-inner">
-      <a href="#/" class="logo">Starter<span>.</span></a>
+      <a href="#/" class="logo">CIVION INFOMATICS</a>
 
-      <div class="icon-menu">
-        <a href="#/" class="icon-link">
-          <span class="icon-link-icon"><img src="/assets/icons/home.png" alt="Home" /></span>
-          <span class="icon-link-title">Home</span>
-        </a>
-        <a href="#/services" class="icon-link">
-          <span class="icon-link-icon"><img src="/assets/icons/Services.png" alt="Services" /></span>
-          <span class="icon-link-title">Services</span>
-        </a>
-        <a href="#/work" class="icon-link">
-          <span class="icon-link-icon"><img src="/assets/icons/work.png" alt="Work" /></span>
-          <span class="icon-link-title">Work</span>
-        </a>
-        <a href="#/process" class="icon-link">
-          <span class="icon-link-icon"><img src="/assets/icons/process.png" alt="Process" /></span>
-          <span class="icon-link-title">Process</span>
-        </a>
-        <a href="#/about" class="icon-link">
-          <span class="icon-link-icon"><img src="/assets/icons/about.png" alt="About" /></span>
-          <span class="icon-link-title">About</span>
-        </a>
-        <a href="#/contact" class="icon-link">
-          <span class="icon-link-icon"><img src="/assets/icons/contact.png" alt="Contact" /></span>
-          <span class="icon-link-title">Contact</span>
-        </a>
+      <div class="nav-links pill-nav">
+        <a href="#/services">SERVICES</a>
+        <a href="#/about">ABOUT</a>
+        <a href="#/contact">CONTACT</a>
       </div>
 
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <a href="#/contact" class="btn btn-outline btn-pill magnetic-btn">LETS WORK</a>
+      </div>
     </div>
   </nav>`;
 }
 
 export function renderFooter() {
-  return `
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="#/" class="logo">Starter<span>.</span></a>
-      <div class="footer-links">
-        <a href="#/services">Services</a>
-        <a href="#/work">Work</a>
-        <a href="#/process">Process</a>
-        <a href="#/about">About</a>
-        <a href="#/contact">Contact</a>
-        <a href="#/privacy">Privacy</a>
-        <a href="#/terms">Terms</a>
-      </div>
-      <p class="copyright">&copy; 2026 Starter. All rights reserved.</p>
-    </div>
-  </footer>`;
+  // Removing old footer as the minimalist landing page design does not show one initially.
+  // We can leave this empty or return an empty string for the home page.
+  return ``;
 }
 
 export function initMobileMenu() {
-  const toggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
+  // Kept for basic compatibility if needed later
+}
 
-  if (toggle && navLinks) {
-    toggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      toggle.classList.toggle('active');
-    });
+export function initMagneticButton() {
+  const magneticBtn = document.querySelector('.magnetic-btn');
+  if (!magneticBtn) return;
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        toggle.classList.remove('active');
-      });
-    });
-  }
+  // Use gsap quickTo for better performance
+  const xTo = gsap.quickTo(magneticBtn, "x", { duration: 0.4, ease: "power3" }),
+    yTo = gsap.quickTo(magneticBtn, "y", { duration: 0.4, ease: "power3" });
+
+  magneticBtn.addEventListener("mousemove", (e) => {
+    const rect = magneticBtn.getBoundingClientRect();
+    // Calculate distance from center
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    // Move it slightly towards mouse (magnetic effect)
+    xTo(x * 0.8);
+    yTo(y * 0.8);
+  });
+
+  magneticBtn.addEventListener("mouseleave", () => {
+    // Reset position
+    xTo(0);
+    yTo(0);
+  });
 }

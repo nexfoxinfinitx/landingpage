@@ -1,168 +1,104 @@
-import { renderNavbar, renderFooter, initMobileMenu } from '../layout.js';
-import { initScrollReveal } from '../animations.js';
+import { renderNavbar, renderFooter, initMobileMenu, initMagneticButton } from '../layout.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function render() {
-    const app = document.getElementById('app');
-    app.innerHTML = `
+  const app = document.getElementById('app');
+
+  // We wrap each word, then each character in spans to animate them individually.
+  app.innerHTML = `
     ${renderNavbar()}
 
-    <!-- Hero -->
-    <header class="hero" id="hero">
-      <div class="container hero-inner">
-        <p class="hero-badge">Web Development Agency</p>
-        <h1>We build websites<br />that <em>drive results</em></h1>
-        <p class="hero-sub">From concept to launch, we craft high-performance digital experiences that help brands grow, convert, and stand out.</p>
-        <div class="hero-actions">
-          <a href="#/contact" class="btn btn-lg">Start a Project</a>
-          <a href="#/work" class="btn btn-lg btn-outline">View Our Work</a>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-card card-1"></div>
-          <div class="hero-card card-2"></div>
-          <div class="hero-card card-3"></div>
-        </div>
+    <main class="landing-main">
+      <div class="hero-left">
+        <h1 class="split-target" align="left"> WE DONT MAKE NOISE. <br> WE MAKE CONVERSATIONS.</h1>
       </div>
-    </header>
-
-    <!-- Services -->
-    <section class="features" id="services">
-      <div class="container">
-        <h2 class="section-title">What we do</h2>
-        <p class="section-sub">End-to-end web solutions tailored to your business goals.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">🎨</div>
-            <h3>UI/UX Design</h3>
-            <p>Beautiful, intuitive interfaces grounded in user research and modern design principles.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Web Development</h3>
-            <p>Fast, responsive, and accessible websites built with clean code and best practices.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🛒</div>
-            <h3>E-Commerce</h3>
-            <p>Custom online stores that convert visitors into customers with seamless shopping experiences.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>SEO &amp; Analytics</h3>
-            <p>Data-driven optimization so your site ranks higher and you understand every visitor.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔧</div>
-            <h3>Maintenance &amp; Support</h3>
-            <p>Ongoing care, updates, and performance monitoring to keep your site running flawlessly.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🚀</div>
-            <h3>SaaS &amp; Web Apps</h3>
-            <p>Full-stack application development for startups and enterprises ready to scale.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="pricing" id="pricing">
-      <div class="container">
-        <h2 class="section-title">Flexible engagement models</h2>
-        <p class="section-sub">Choose the plan that fits your project scope and budget.</p>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Starter</h3>
-            <p class="price">$2,500<span>/project</span></p>
-            <ul>
-              <li>Up to 5 pages</li>
-              <li>Responsive design</li>
-              <li>Basic SEO setup</li>
-              <li>2 revision rounds</li>
-            </ul>
-            <a href="#/contact" class="btn btn-outline">Get a Quote</a>
-          </div>
-          <div class="pricing-card popular">
-            <span class="popular-badge">Most Popular</span>
-            <h3>Growth</h3>
-            <p class="price">$6,000<span>/project</span></p>
-            <ul>
-              <li>Up to 15 pages</li>
-              <li>Custom UI/UX design</li>
-              <li>CMS integration</li>
-              <li>Advanced SEO &amp; analytics</li>
-              <li>Priority support</li>
-            </ul>
-            <a href="#/contact" class="btn">Get a Quote</a>
-          </div>
-          <div class="pricing-card">
-            <h3>Enterprise</h3>
-            <p class="price">Custom</p>
-            <ul>
-              <li>Unlimited pages</li>
-              <li>Full-stack development</li>
-              <li>Dedicated project manager</li>
-              <li>SLA &amp; ongoing support</li>
-            </ul>
-            <a href="#/contact" class="btn btn-outline">Contact Us</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-      <div class="container">
-        <h2 class="section-title">Trusted by ambitious brands</h2>
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <p>"Starter. redesigned our entire platform and the results were immediate — 40% more conversions in the first month."</p>
-            <div class="testimonial-author">
-              <div class="avatar" style="background:#6C63FF"></div>
-              <div>
-                <strong>Alex Rivera</strong>
-                <span>CTO, Flowstate</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p>"Their process is incredibly smooth. We went from wireframes to a live site in under four weeks."</p>
-            <div class="testimonial-author">
-              <div class="avatar" style="background:#FF6584"></div>
-              <div>
-                <strong>Priya Sharma</strong>
-                <span>Product Lead, NovaTech</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p>"We needed an e-commerce store that felt premium. Starter. nailed it — our customers love the experience."</p>
-            <div class="testimonial-author">
-              <div class="avatar" style="background:#43E97B"></div>
-              <div>
-                <strong>Jordan Kim</strong>
-                <span>Founder, Pixelworks</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta" id="contact">
-      <div class="container cta-inner">
-        <h2>Ready to build something great?</h2>
-        <p>Tell us about your project and we'll get back to you within 24 hours.</p>
-        <div class="hero-actions">
-          <a href="#/contact" class="btn btn-lg">Start a Project</a>
-          <a href="#/work" class="btn btn-lg btn-outline">See Our Work</a>
-        </div>
-      </div>
-    </section>
+    </main>
 
     ${renderFooter()}
-  `;
+    `;
 
-    initMobileMenu();
-    initScrollReveal();
+  // Initialize animation after a brief tick to let DOM render
+  setTimeout(() => {
+    initSplitTextAnimation();
+    initMagneticButton();
+  }, 50);
+}
+
+function initSplitTextAnimation() {
+  const target = document.querySelector('.split-target');
+  if (!target) return;
+
+  // Save original text including <br> tags. We'll split text nodes manually
+  // to mimic GSAP SplitText (since we don't have the premium club plugin installed by default in Vite vanilla).
+  const contentHtml = target.innerHTML;
+  target.innerHTML = '';
+
+  // Simple custom splitting by word and char
+  // We handle <br> specifically.
+  const parts = contentHtml.split(/(<br\s*\/?>)/i);
+
+  const charsTarget = [];
+
+  parts.forEach(part => {
+    if (part.toLowerCase().includes('<br')) {
+      target.appendChild(document.createElement('br'));
+      return;
+    }
+
+    // Split by words first
+    const words = part.split(' ');
+    words.forEach((word, wordIndex) => {
+      if (word === '') return;
+
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'split-word';
+      wordSpan.style.display = 'inline-block';
+      wordSpan.style.whiteSpace = 'nowrap';
+
+      // Split word into characters
+      const chars = word.split('');
+      chars.forEach(char => {
+        const charSpan = document.createElement('span');
+        charSpan.className = 'split-char';
+        charSpan.style.display = 'inline-block';
+        // important to let transform work properly
+        charSpan.style.willChange = 'transform, opacity';
+        charSpan.innerText = char;
+
+        wordSpan.appendChild(charSpan);
+        charsTarget.push(charSpan);
+      });
+
+      target.appendChild(wordSpan);
+
+      // Add space after word if it's not the last word
+      if (wordIndex < words.length - 1) {
+        const space = document.createTextNode(' ');
+        target.appendChild(space);
+      }
+    });
+  });
+
+  // Animate Characters mapping style.txt reference:
+  // from={{ opacity: 0, y: 40 }} to={{ opacity: 1, y: 0 }} duration=1.25 stagger=0.05 ease="power3.out"
+  // Updated to have a noticeable bounce effect based on user feedback
+  gsap.fromTo(charsTarget,
+    {
+      opacity: 0,
+      y: 80, // Start further down for a bigger bounce
+      scale: 0.8 // Start slightly smaller
+    },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 1, // Slightly longer duration for the bounce to settle
+      ease: "elastic.out(1, 0.4)", // strong bounce effect
+      stagger: 0.04,
+      delay: 0.2
+    }
+  );
 }
