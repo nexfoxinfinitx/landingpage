@@ -1,115 +1,118 @@
-import { renderNavbar, renderFooter, initMobileMenu } from '../layout.js';
-import { initScrollReveal } from '../animations.js';
+import { renderNavbar, renderFooter, initMagneticButton } from '../layouts/layout.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function render() {
-    const app = document.getElementById('app');
-    app.innerHTML = `
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
     ${renderNavbar()}
 
-    <!-- Page Header -->
-    <header class="page-header">
-      <div class="container">
-        <h1>About Starter<span style="color:var(--accent)">.</span></h1>
-        <p>We're a team of designers, developers, and strategists who believe the web should be beautiful, fast, and accessible to everyone.</p>
-      </div>
-    </header>
+    <div style="padding-top: 80px; min-height: calc(100vh - 80px); background: #12161A;">
+      <!-- ═══════════ ABOUT US ═══════════ -->
+      <section id="about" class="single-section about-section">
+        <div class="container">
+          <div class="section-label">ABOUT US</div>
+          <h2 class="section-title">We Build Like<span class="text-accent"> Experts</span></h2>
+          <p class="section-sub">We are a fast-growing digital solutions agency focused on building modern, scalable, and high-performing digital products.</p>
 
-    <!-- Mission -->
-    <section class="page-section">
-      <div class="container">
-        <h2 class="section-title">Our Mission</h2>
-        <p class="section-sub">We help ambitious brands translate their vision into exceptional digital experiences that drive real business results.</p>
-        <p style="max-width:720px;margin:0 auto;color:var(--text-muted);text-align:center;font-size:.95rem;line-height:1.8;">
-          Founded in 2020, Starter. grew from a two-person freelance partnership into a full-service web agency. We've shipped over 80 projects for startups, SMBs, and enterprise clients across e-commerce, SaaS, healthcare, and fintech. Our philosophy is simple: understand the problem deeply, design with intent, and build with precision.
-        </p>
-      </div>
-    </section>
+          <div class="about-content-grid">
+            <div class="about-text">
+              <p>As a startup, we bring agility, fresh thinking, and a deep understanding of today’s technology landscape.</p>
+              <p>Our team specializes in crafting websites, mobile applications, and AI-driven systems that are not just functional — but designed to solve real business problems and drive growth.</p>
+              <p>Unlike traditional agencies, we work closely with our clients, acting as technology partners rather than just service providers.</p>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-number">80+</span>
+                <span class="stat-label">Projects Shipped</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Happy Clients</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">2+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Team Members</span>
+              </div>
+            </div>
+          </div>
 
-    <!-- Values -->
-    <section class="page-section">
-      <div class="container">
-        <h2 class="section-title">Our Values</h2>
-        <p class="section-sub">The principles that guide every project we take on.</p>
-        <div class="values-grid">
-          <div class="value-card">
-            <div class="value-icon">🎯</div>
-            <h3>Results First</h3>
-            <p>Every design choice and line of code is driven by measurable outcomes for your business.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🤝</div>
-            <h3>True Partnership</h3>
-            <p>We work alongside you, not just for you. Transparent communication at every stage.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">⚡</div>
-            <h3>Relentless Quality</h3>
-            <p>We sweat the details so your users don't have to. Pixel-perfect, performant, accessible.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🔬</div>
-            <h3>Continuous Learning</h3>
-            <p>The web evolves fast. We stay ahead of the curve so your product never falls behind.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🌍</div>
-            <h3>Inclusive Design</h3>
-            <p>We build for everyone. Accessibility and usability are non-negotiable in every project.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🚀</div>
-            <h3>Ship &amp; Iterate</h3>
-            <p>Perfection is a moving target. We ship fast, gather feedback, and refine continuously.</p>
+          <div class="values-grid">
+            <div class="value-card">
+              <h3>Results First</h3>
+              <p>Every design choice and line of code is driven by measurable outcomes for your business.</p>
+            </div>
+            <div class="value-card">
+              <h3>True Partnership</h3>
+              <p>We work alongside you, not just for you. Transparent communication at every stage.</p>
+            </div>
+            <div class="value-card">
+              <h3>Relentless Quality</h3>
+              <p>We sweat the details so your users don't have to. Pixel-perfect, performant, accessible.</p>
+            </div>
+            <div class="value-card">
+              <h3>Continuous Learning</h3>
+              <p>The web evolves fast. We stay ahead of the curve so your product never falls behind.</p>
+            </div>
+            <div class="value-card">
+              <h3>Inclusive Design</h3>
+              <p>We build for everyone. Accessibility and usability are non-negotiable in every project.</p>
+            </div>
+            <div class="value-card">
+              <h3>Ship &amp; Iterate</h3>
+              <p>Perfection is a moving target. We ship fast, gather feedback, and refine continuously.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Team -->
-    <section class="page-section">
-      <div class="container">
-        <h2 class="section-title">Meet the Team</h2>
-        <p class="section-sub">The people behind the pixels.</p>
-        <div class="team-grid">
-          <div class="team-member">
-            <div class="team-avatar" style="background:#6C63FF"></div>
-            <h4>Maya Chen</h4>
-            <p>Founder &amp; Creative Director</p>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar" style="background:#FF6584"></div>
-            <h4>David Osei</h4>
-            <p>Lead Developer</p>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar" style="background:#43E97B"></div>
-            <h4>Sofia Reyes</h4>
-            <p>UX/UI Designer</p>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar" style="background:#FFB347"></div>
-            <h4>Liam Park</h4>
-            <p>Project Manager</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-      <div class="container cta-inner">
-        <h2>Let's build something great together</h2>
-        <p>Have a project in mind? We'd love to hear about it.</p>
-        <div class="hero-actions">
-          <a href="#/contact" class="btn btn-lg">Start a Project</a>
-          <a href="#/work" class="btn btn-lg btn-outline">View Our Work</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     ${renderFooter()}
   `;
 
-    initMobileMenu();
-    initScrollReveal();
+  setTimeout(() => {
+    initMagneticButton();
+
+    gsap.utils.toArray('.section-label').forEach(label => {
+      gsap.fromTo(label,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: label, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.section-title').forEach(title => {
+      gsap.fromTo(title,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: title, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    const statItems = gsap.utils.toArray('.stat-item');
+    if (statItems.length) {
+      gsap.fromTo(statItems,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1, scale: 1, duration: 0.6, stagger: 0.12, ease: 'back.out(1.5)',
+          scrollTrigger: { trigger: '.about-stats', start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      );
+    }
+  }, 50);
+
+  return () => {
+    ScrollTrigger.getAll().forEach(t => t.kill());
+  };
 }

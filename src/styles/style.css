@@ -205,6 +205,12 @@ img {
   color: #fff;
 }
 
+.pill-nav a.active-nav-link {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(240, 106, 106, 0.9); /* Contrasting pink/orange glow */
+  border-bottom: 2px solid #f06a6a;
+}
+
 .menu-toggle {
   display: none;
   background: none;
@@ -243,6 +249,235 @@ body {
 .hero-center {
   max-width: 1200px;
   text-align: center;
+}
+
+/* ───────── Hero Section with LineWaves ───────── */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.hero-bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 22, 26, 0.3) 0%,
+    rgba(18, 22, 26, 0.15) 50%,
+    rgba(18, 22, 26, 0.7) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 48px;
+  max-width: 1000px;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(248, 245, 233, 0.6);
+  margin-top: 24px;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* ───────── Single-Page Section Shared ───────── */
+.single-section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #2ab7a8;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.text-accent {
+  color: #2ab7a8;
+}
+
+/* ───────── About Section ───────── */
+.about-section {
+  background: #12161A;
+}
+
+.about-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin: 60px 0;
+  align-items: start;
+}
+
+.about-text p {
+  color: rgba(248, 245, 233, 0.65);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.stat-item:hover {
+  border-color: rgba(42, 183, 168, 0.3);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #F8F5E9;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(248, 245, 233, 0.45);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ───────── Services Section ───────── */
+.services-section {
+  background: #0e1215;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 36px 28px;
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: rgba(42, 183, 168, 0.35);
+  transform: translateY(-6px);
+  background: rgba(42, 183, 168, 0.04);
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(42, 183, 168, 0.1);
+  color: #2ab7a8;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #F8F5E9;
+}
+
+.service-card p {
+  color: rgba(248, 245, 233, 0.55);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.process-wrapper {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.process-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #F8F5E9;
+}
+
+/* ───────── Contact Section ───────── */
+.contact-section {
+  background: #12161A;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 24px;
+  }
+
+  .about-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .single-section {
+    padding: 80px 0;
+  }
 }
 
 .split-target {

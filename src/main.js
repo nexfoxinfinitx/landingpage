@@ -1,28 +1,16 @@
-import './style.css';
-import { route, startRouter, resolveRoute } from './router.js';
+import './styles/style.css';
+import { route, startRouter } from './utils/router.js';
 import { render as renderHome } from './pages/home.js';
 import { render as renderAbout } from './pages/about.js';
+import { render as renderServices } from './pages/services.js';
 import { render as renderContact } from './pages/contact.js';
-import { render as renderPortfolio } from './pages/portfolio.js';
-import { render as renderWorkflow } from './pages/workflow.js';
-import { render as renderPrivacy } from './pages/privacy.js';
-import { render as renderTerms } from './pages/terms.js';
 import { render as renderTemplate1 } from '../templates/template-1.ts';
-// Register routes
-route('/', () => { renderHome(); });
-route('/services', () => {
-    renderHome();
-    setTimeout(() => {
-        const el = document.getElementById('services');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-});
-route('/about', () => { renderAbout(); });
-route('/contact', () => { renderContact(); });
-route('/work', () => { renderPortfolio(); });
-route('/process', () => { renderWorkflow(); });
-route('/privacy', () => { renderPrivacy(); });
-route('/terms', () => { renderTerms(); });
+
+// Register routes — active pages only
+route('/', () => { return renderHome(); });
+route('/about', () => { return renderAbout(); });
+route('/services', () => { return renderServices(); });
+route('/contact', () => { return renderContact(); });
 route('/template-1', () => { return renderTemplate1(); });
 
 // Add global visible style for scroll animations

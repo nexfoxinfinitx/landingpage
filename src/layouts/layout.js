@@ -2,15 +2,27 @@
 import gsap from 'gsap';
 
 export function renderNavbar() {
+  const currentPath = window.location.hash.slice(1) || '/';
+  
+  const navLinks = [
+    { path: '/about', label: 'ABOUT' },
+    { path: '/services', label: 'SERVICES' },
+    { path: '/contact', label: 'CONTACT' }
+  ];
+
+  const linksHtml = navLinks.map(link => {
+    const isActive = currentPath === link.path;
+    const activeClass = isActive ? 'active-nav-link' : '';
+    return `<a href="#${link.path}" class="${activeClass}">${link.label}</a>`;
+  }).join('\n        ');
+
   return `
   <nav class="navbar landing-navbar">
     <div class="container navbar-inner">
       <a href="#/" class="logo">CIVION INFOMATICS</a>
 
       <div class="nav-links pill-nav">
-        <a href="#/services">SERVICES</a>
-        <a href="#/about">ABOUT</a>
-        <a href="#/contact">CONTACT</a>
+        ${linksHtml}
       </div>
 
       <div class="nav-actions">
@@ -21,8 +33,6 @@ export function renderNavbar() {
 }
 
 export function renderFooter() {
-  // Removing old footer as the minimalist landing page design does not show one initially.
-  // We can leave this empty or return an empty string for the home page.
   return ``;
 }
 

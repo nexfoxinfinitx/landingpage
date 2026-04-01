@@ -1,45 +1,82 @@
-import { renderNavbar, renderFooter, initMobileMenu, initMagneticButton } from '../layout.js';
+import { renderNavbar, renderFooter, initMagneticButton } from '../layouts/layout.js';
+import { initLineWaves } from '../components/LineWavesVanilla.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+let lineWavesCleanup = null;
+
 export function render() {
   const app = document.getElementById('app');
 
-  // We wrap each word, then each character in spans to animate them individually.
   app.innerHTML = `
     ${renderNavbar()}
 
-    <main class="landing-main">
-      <div class="hero-left">
-        <h1 class="split-target" align="left"> WE DONT MAKE NOISE. <br> WE MAKE CONVERSATIONS.</h1>
+    <!-- ═══════════ HOME / HERO ═══════════ -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg-canvas" id="hero-bg-canvas"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="split-target" align="left">WE DONT MAKE NOISE. <br> WE MAKE CONVERSATIONS.</h1>
+        <p class="hero-subtitle">From high-performance websites to scalable mobile apps and AI automation systems — we help startups and businesses turn ideas into powerful digital solutions.</p>
+        <div class="hero-cta-row">
+          <a href="#/services" class="btn btn-outline btn-pill">OUR SERVICES</a>
+        </div>
       </div>
-    </main>
+    </section>
 
     ${renderFooter()}
-    `;
+  `;
 
-  // Initialize animation after a brief tick to let DOM render
+  // Initialize all interactive bits after DOM renders
   setTimeout(() => {
     initSplitTextAnimation();
     initMagneticButton();
+    initLineWavesBackground();
   }, 50);
+
+  // Return cleanup for the router
+  return () => {
+    if (lineWavesCleanup) {
+      lineWavesCleanup();
+      lineWavesCleanup = null;
+    }
+    ScrollTrigger.getAll().forEach(t => t.kill());
+  };
 }
 
+// ─── LineWaves Background ───
+function initLineWavesBackground() {
+  const container = document.getElementById('hero-bg-canvas');
+  if (!container) return;
+
+  lineWavesCleanup = initLineWaves(container, {
+    speed: 0.3,
+    innerLineCount: 32,
+    outerLineCount: 36,
+    warpIntensity: 1,
+    rotation: -45,
+    edgeFadeWidth: 0,
+    colorCycleSpeed: 1,
+    brightness: 0.2,
+    color1: '#16252e',
+    color2: '#4a6b82',
+    color3: '#2ab7a8',
+    enableMouseInteraction: true,
+    mouseInfluence: 2
+  });
+}
+
+// ─── SplitText Animation (existing) ───
 function initSplitTextAnimation() {
   const target = document.querySelector('.split-target');
   if (!target) return;
 
-  // Save original text including <br> tags. We'll split text nodes manually
-  // to mimic GSAP SplitText (since we don't have the premium club plugin installed by default in Vite vanilla).
   const contentHtml = target.innerHTML;
   target.innerHTML = '';
 
-  // Simple custom splitting by word and char
-  // We handle <br> specifically.
   const parts = contentHtml.split(/(<br\s*\/?>)/i);
-
   const charsTarget = [];
 
   parts.forEach(part => {
@@ -48,7 +85,6 @@ function initSplitTextAnimation() {
       return;
     }
 
-    // Split by words first
     const words = part.split(' ');
     words.forEach((word, wordIndex) => {
       if (word === '') return;
@@ -58,13 +94,11 @@ function initSplitTextAnimation() {
       wordSpan.style.display = 'inline-block';
       wordSpan.style.whiteSpace = 'nowrap';
 
-      // Split word into characters
       const chars = word.split('');
       chars.forEach(char => {
         const charSpan = document.createElement('span');
         charSpan.className = 'split-char';
         charSpan.style.display = 'inline-block';
-        // important to let transform work properly
         charSpan.style.willChange = 'transform, opacity';
         charSpan.innerText = char;
 
@@ -74,7 +108,6 @@ function initSplitTextAnimation() {
 
       target.appendChild(wordSpan);
 
-      // Add space after word if it's not the last word
       if (wordIndex < words.length - 1) {
         const space = document.createTextNode(' ');
         target.appendChild(space);
@@ -82,21 +115,18 @@ function initSplitTextAnimation() {
     });
   });
 
-  // Animate Characters mapping style.txt reference:
-  // from={{ opacity: 0, y: 40 }} to={{ opacity: 1, y: 0 }} duration=1.25 stagger=0.05 ease="power3.out"
-  // Updated to have a noticeable bounce effect based on user feedback
   gsap.fromTo(charsTarget,
     {
       opacity: 0,
-      y: 80, // Start further down for a bigger bounce
-      scale: 0.8 // Start slightly smaller
+      y: 80,
+      scale: 0.8
     },
     {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 1, // Slightly longer duration for the bounce to settle
-      ease: "elastic.out(1, 0.4)", // strong bounce effect
+      duration: 1,
+      ease: "elastic.out(1, 0.4)",
       stagger: 0.04,
       delay: 0.2
     }
