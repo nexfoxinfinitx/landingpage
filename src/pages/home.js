@@ -31,7 +31,6 @@ export function render() {
 
   // Initialize all interactive bits after DOM renders
   setTimeout(() => {
-    initSplitTextAnimation();
     initMagneticButton();
     initLineWavesBackground();
   }, 50);
@@ -68,67 +67,4 @@ function initLineWavesBackground() {
   });
 }
 
-// ─── SplitText Animation (existing) ───
-function initSplitTextAnimation() {
-  const target = document.querySelector('.split-target');
-  if (!target) return;
 
-  const contentHtml = target.innerHTML;
-  target.innerHTML = '';
-
-  const parts = contentHtml.split(/(<br\s*\/?>)/i);
-  const charsTarget = [];
-
-  parts.forEach(part => {
-    if (part.toLowerCase().includes('<br')) {
-      target.appendChild(document.createElement('br'));
-      return;
-    }
-
-    const words = part.split(' ');
-    words.forEach((word, wordIndex) => {
-      if (word === '') return;
-
-      const wordSpan = document.createElement('span');
-      wordSpan.className = 'split-word';
-      wordSpan.style.display = 'inline-block';
-      wordSpan.style.whiteSpace = 'nowrap';
-
-      const chars = word.split('');
-      chars.forEach(char => {
-        const charSpan = document.createElement('span');
-        charSpan.className = 'split-char';
-        charSpan.style.display = 'inline-block';
-        charSpan.style.willChange = 'transform, opacity';
-        charSpan.innerText = char;
-
-        wordSpan.appendChild(charSpan);
-        charsTarget.push(charSpan);
-      });
-
-      target.appendChild(wordSpan);
-
-      if (wordIndex < words.length - 1) {
-        const space = document.createTextNode(' ');
-        target.appendChild(space);
-      }
-    });
-  });
-
-  gsap.fromTo(charsTarget,
-    {
-      opacity: 0,
-      y: 80,
-      scale: 0.8
-    },
-    {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1,
-      ease: "elastic.out(1, 0.4)",
-      stagger: 0.04,
-      delay: 0.2
-    }
-  );
-}

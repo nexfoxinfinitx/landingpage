@@ -11,9 +11,7 @@ export function renderNavbar() {
   ];
 
   const linksHtml = navLinks.map(link => {
-    const isActive = currentPath === link.path;
-    const activeClass = isActive ? 'active-nav-link' : '';
-    return `<a href="#${link.path}" class="${activeClass}">${link.label}</a>`;
+    return `<a href="#${link.path}">${link.label}</a>`;
   }).join('\n        ');
 
   return `
