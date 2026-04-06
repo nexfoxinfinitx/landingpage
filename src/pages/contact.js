@@ -44,13 +44,11 @@ export function render() {
                       <option value="landing">Landing Page</option>
                       <option value="ecommerce">E-Commerce</option>
                       <option value="saas">SaaS / Web App</option>
-                      <option value="redesign">Redesign</option>
-                      <option value="other">Other</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="contact-budget">Estimated Budget</label>
-                    <input type="text" id="contact-budget" placeholder="₹50,000 – ₹2,00,000" />
+                    <input type="text" id="contact-budget" placeholder="₹10,000 – ₹1,00,000" />
                   </div>
                 </div>
                 <div class="form-group">
