@@ -1,115 +1,46 @@
-import { renderNavbar, renderFooter, initMobileMenu } from '../layout.js';
-import { initScrollReveal } from '../animations.js';
+import { renderNavbar, renderFooter, initMagneticButton } from '../layouts/layout.js';
 
 export function render() {
-    const app = document.getElementById('app');
-    app.innerHTML = `
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
     ${renderNavbar()}
+    
+    <div style="padding-top: 150px; padding-bottom: 100px; min-height: 100vh; position: relative; background: transparent; display: flex; align-items: center; justify-content: center;">
+      <div style="width: 100%; max-width: 1200px; padding: 0 5%; display: flex; flex-direction: column; gap: 80px;">
+        
+        <!-- Top Text -->
+        <div style="color: #fff; max-width: 600px;">
+           <h1 style="font-size: 4rem; font-weight: bold; margin-bottom: 20px;">About Us</h1>
+           <p style="font-size: 1.2rem; line-height: 1.6; color: rgba(255,255,255,0.8);">We are a fast-growing digital solutions agency focused on building modern, scalable, and high-performing digital products.</p>
+        </div>
 
-    <!-- Page Header -->
-    <header class="page-header">
-      <div class="container">
-        <h1>About Starter<span style="color:var(--accent)">.</span></h1>
-        <p>We're a team of designers, developers, and strategists who believe the web should be beautiful, fast, and accessible to everyone.</p>
-      </div>
-    </header>
-
-    <!-- Mission -->
-    <section class="page-section">
-      <div class="container">
-        <h2 class="section-title">Our Mission</h2>
-        <p class="section-sub">We help ambitious brands translate their vision into exceptional digital experiences that drive real business results.</p>
-        <p style="max-width:720px;margin:0 auto;color:var(--text-muted);text-align:center;font-size:.95rem;line-height:1.8;">
-          Founded in 2020, Starter. grew from a two-person freelance partnership into a full-service web agency. We've shipped over 80 projects for startups, SMBs, and enterprise clients across e-commerce, SaaS, healthcare, and fintech. Our philosophy is simple: understand the problem deeply, design with intent, and build with precision.
-        </p>
-      </div>
-    </section>
-
-    <!-- Values -->
-    <section class="page-section">
-      <div class="container">
-        <h2 class="section-title">Our Values</h2>
-        <p class="section-sub">The principles that guide every project we take on.</p>
-        <div class="values-grid">
-          <div class="value-card">
-            <div class="value-icon">🎯</div>
-            <h3>Results First</h3>
-            <p>Every design choice and line of code is driven by measurable outcomes for your business.</p>
+        <!-- Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%;">
+          <div style="background: #0a0a0a; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-start;">
+            <h3 style="color: #fff; font-size: 2rem; margin-bottom: 15px;">Who We Are</h3>
+            <p style="color: #aaa; font-size: 1.1rem; line-height: 1.6;">As a startup, we bring agility, fresh thinking, and a deep understanding of today's technology landscape to solve real business problems and drive growth.</p>
           </div>
-          <div class="value-card">
-            <div class="value-icon">🤝</div>
-            <h3>True Partnership</h3>
-            <p>We work alongside you, not just for you. Transparent communication at every stage.</p>
+          <div style="background: #0a0a0a; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-start;">
+            <h3 style="color: #fff; font-size: 2rem; margin-bottom: 15px;">Our Stats</h3>
+            <p style="color: #aaa; font-size: 1.1rem; line-height: 1.6;">80+ Projects Shipped<br/>50+ Happy Clients<br/>2+ Years Experience<br/>6 Team Members</p>
           </div>
-          <div class="value-card">
-            <div class="value-icon">⚡</div>
-            <h3>Relentless Quality</h3>
-            <p>We sweat the details so your users don't have to. Pixel-perfect, performant, accessible.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🔬</div>
-            <h3>Continuous Learning</h3>
-            <p>The web evolves fast. We stay ahead of the curve so your product never falls behind.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🌍</div>
-            <h3>Inclusive Design</h3>
-            <p>We build for everyone. Accessibility and usability are non-negotiable in every project.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🚀</div>
-            <h3>Ship &amp; Iterate</h3>
-            <p>Perfection is a moving target. We ship fast, gather feedback, and refine continuously.</p>
+          <div style="background: #0a0a0a; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-start;">
+            <h3 style="color: #fff; font-size: 2rem; margin-bottom: 15px;">Our Values</h3>
+            <p style="color: #aaa; font-size: 1.1rem; line-height: 1.6;">Results First<br/>True Partnership<br/>Relentless Quality<br/>Continuous Learning</p>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Team -->
-    <section class="page-section">
-      <div class="container">
-        <h2 class="section-title">Meet the Team</h2>
-        <p class="section-sub">The people behind the pixels.</p>
-        <div class="team-grid">
-          <div class="team-member">
-            <div class="team-avatar" style="background:#6C63FF"></div>
-            <h4>Maya Chen</h4>
-            <p>Founder &amp; Creative Director</p>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar" style="background:#FF6584"></div>
-            <h4>David Osei</h4>
-            <p>Lead Developer</p>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar" style="background:#43E97B"></div>
-            <h4>Sofia Reyes</h4>
-            <p>UX/UI Designer</p>
-          </div>
-          <div class="team-member">
-            <div class="team-avatar" style="background:#FFB347"></div>
-            <h4>Liam Park</h4>
-            <p>Project Manager</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-      <div class="container cta-inner">
-        <h2>Let's build something great together</h2>
-        <p>Have a project in mind? We'd love to hear about it.</p>
-        <div class="hero-actions">
-          <a href="#/contact" class="btn btn-lg">Start a Project</a>
-          <a href="#/work" class="btn btn-lg btn-outline">View Our Work</a>
-        </div>
-      </div>
-    </section>
+    </div>
 
     ${renderFooter()}
   `;
 
-    initMobileMenu();
-    initScrollReveal();
+  setTimeout(() => {
+    initMagneticButton();
+  }, 50);
+
+  return () => {
+    // cleanup
+  };
 }
