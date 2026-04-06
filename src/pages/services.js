@@ -6,9 +6,9 @@ export function render() {
   const app = document.getElementById('app');
 
   const demoItems = [
-    { link: '#', text: 'App Development', image: 'public/images/appdev.png' },
-    { link: '#', text: 'Web Development', image: 'public/images/webdev.png' },
-    { link: '#', text: 'AI Automation', image: 'public/images/automation.png' },
+    { link: '#', text: 'App Development', image: '/images/appdev.png' },
+    { link: '#', text: 'Web Development', image: '/images/webdev.png' },
+    { link: '#', text: 'AI Automation', image: '/images/automation.png' },
   ];
 
   const speed = 15;
