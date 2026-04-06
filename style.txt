@@ -14,12 +14,11 @@ import ProfileCard from './ProfileCard'
   enableMobileTilt={false}
   onContactClick={() => console.log('Contact clicked')}
   behindGlowColor="rgba(125, 190, 255, 0.67)"
-  iconUrl="/assets/demo/iconpattern.png"
   behindGlowEnabled
   innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
 />
 
-code 
+code
 
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import './ProfileCard.css';
@@ -417,6 +416,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
 const ProfileCard = React.memo(ProfileCardComponent);
 export default ProfileCard;
+
 
 css
 
