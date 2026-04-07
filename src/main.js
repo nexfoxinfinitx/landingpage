@@ -9,6 +9,7 @@ import { render as renderPrivacy } from './pages/privacy.js';
 import { render as renderTerms } from './pages/terms.js';
 import { render as renderTemplate1 } from '../templates/template-1.ts';
 import { createLoadingScreen, startLoadingAnimation } from './components/LoadingScreen.js';
+import { inject } from '@vercel/analytics';
 
 // Register routes — active pages only
 route('/', () => { return renderHome(); });
@@ -23,6 +24,9 @@ route('/template-1', () => { return renderTemplate1(); });
 const style = document.createElement('style');
 style.textContent = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
 document.head.appendChild(style);
+
+// Initialize Vercel Analytics
+inject();
 
 // Show loading screen on first visit, then start the router
 const hasLoaded = sessionStorage.getItem('civion-loaded');
