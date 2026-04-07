@@ -1,5 +1,8 @@
 import './styles/style.css';
 import './styles/loading.css';
+import { inject } from '@vercel/analytics';
+
+inject();
 import { route, startRouter } from './utils/router.js';
 import { render as renderHome } from './pages/home.js';
 import { render as renderAbout } from './pages/about.js';
