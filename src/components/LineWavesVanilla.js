@@ -151,6 +151,10 @@ export function initLineWaves(container, options = {}) {
 
   const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
   const gl = renderer.gl;
+  if (!gl) {
+    console.warn('WebGL not supported, skipping LineWaves background');
+    return function cleanup() {};
+  }
   gl.clearColor(0, 0, 0, 0);
 
   let currentMouse = [0.5, 0.5];

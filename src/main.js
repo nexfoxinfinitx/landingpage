@@ -1,8 +1,6 @@
 import './styles/style.css';
 import './styles/loading.css';
 import { inject } from '@vercel/analytics';
-
-inject();
 import { route, startRouter } from './utils/router.js';
 import { render as renderHome } from './pages/home.js';
 import { render as renderAbout } from './pages/about.js';
@@ -12,6 +10,9 @@ import { render as renderPrivacy } from './pages/privacy.js';
 import { render as renderTerms } from './pages/terms.js';
 import { render as renderTemplate1 } from '../templates/template-1.ts';
 import { createLoadingScreen, startLoadingAnimation } from './components/LoadingScreen.js';
+
+// Initialize Vercel Analytics
+inject();
 
 // Register routes — active pages only
 route('/', () => { return renderHome(); });
