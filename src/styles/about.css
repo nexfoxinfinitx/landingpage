@@ -23,7 +23,7 @@
 .about-title {
   font-size: clamp(2.8rem, 6vw, 4.5rem);
   font-weight: 800;
-  color: #fff;
+  color: #000;
   margin-bottom: 24px;
   letter-spacing: -0.02em;
 }
@@ -31,14 +31,14 @@
 .about-lead {
   font-size: 1.15rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   margin-bottom: 16px;
 }
 
 .about-lead-sub {
   font-size: 1.05rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /* ─── Section Headers ─── */
@@ -52,12 +52,12 @@
 .about-section-header h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
+  color: #000;
   margin: 0;
 }
 
 .about-diamond {
-  color: #2ab7a8;
+  color: #000000;
   font-size: 1rem;
 }
 
@@ -65,7 +65,7 @@
 .about-body {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.75);
   margin-bottom: 14px;
 }
 
@@ -82,12 +82,12 @@
 .about-list li {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   padding-left: 8px;
 }
 
 .about-list li strong {
-  color: #fff;
+  color: #000;
 }
 
 .about-emoji {
@@ -103,7 +103,7 @@
   content: '•';
   position: absolute;
   left: 6px;
-  color: #2ab7a8;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -154,13 +154,13 @@
 .about-stat-number {
   font-size: 2.4rem;
   font-weight: 800;
-  color: #fff;
+  color: #000;
   letter-spacing: -0.02em;
 }
 
 .about-stat-label {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(0, 0, 0, 0.55);
   line-height: 1.4;
 }
 
@@ -185,21 +185,21 @@
 }
 
 .about-value-card h3 {
-  color: #fff;
+  color: #000;
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
 .about-value-card p {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
 }
 
 .about-value-card em {
-  color: #2ab7a8;
+  color: #000000;
   font-style: italic;
 }
 
@@ -215,7 +215,7 @@
   align-items: center;
   gap: 14px;
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   padding: 16px 24px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -229,7 +229,7 @@
 }
 
 .about-check {
-  color: #2ab7a8;
+  color: #000000;
   font-size: 1.2rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -268,27 +268,27 @@
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #fff;
+  color: #000;
   margin-bottom: 20px;
   letter-spacing: 0.02em;
 }
 
 .about-team-card h3 {
-  color: #fff;
+  color: #000;
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
 .about-team-role {
-  color: #2ab7a8;
+  color: #000000;
   font-size: 0.88rem;
   font-weight: 500;
   margin-bottom: 14px;
 }
 
 .about-team-card p {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 0.92rem;
   line-height: 1.55;
   font-style: italic;

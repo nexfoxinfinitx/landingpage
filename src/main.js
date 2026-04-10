@@ -1,32 +1,47 @@
 import './styles/style.css';
 import './styles/loading.css';
 import { inject } from '@vercel/analytics';
-import { route, startRouter } from './utils/router.js';
-import { render as renderHome } from './pages/home.js';
-import { render as renderAbout } from './pages/about.js';
-import { render as renderServices } from './pages/services.js';
-import { render as renderContact } from './pages/contact.js';
-import { render as renderPrivacy } from './pages/privacy.js';
-import { render as renderTerms } from './pages/terms.js';
-import { render as renderTemplate1 } from '../templates/template-1.ts';
+
+import { getHomeHtml, initHome } from './pages/home.js';
+import { getAboutHtml, initAbout } from './pages/about.js';
+import { getServicesHtml, initServices } from './pages/services.js';
+import { getContactHtml, initContact } from './pages/contact.js';
+
+import { renderNavbar, renderContactFooter, initMagneticButton } from './layouts/layout.js';
 import { createLoadingScreen, startLoadingAnimation } from './components/LoadingScreen.js';
+import { initShaderBackground } from './components/ShaderBackgroundVanilla.js';
 
 // Initialize Vercel Analytics
 inject();
-
-// Register routes — active pages only
-route('/', () => { return renderHome(); });
-route('/about', () => { return renderAbout(); });
-route('/services', () => { return renderServices(); });
-route('/contact', () => { return renderContact(); });
-route('/privacy', () => { return renderPrivacy(); });
-route('/terms', () => { return renderTerms(); });
-route('/template-1', () => { return renderTemplate1(); });
 
 // Add global visible style for scroll animations
 const style = document.createElement('style');
 style.textContent = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
 document.head.appendChild(style);
+
+function initApp() {
+  const app = document.getElementById('app');
+  
+  app.innerHTML = `
+    <canvas id="global-shader-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none;"></canvas>
+    ${renderNavbar()}
+    ${getHomeHtml()}
+    ${getAboutHtml()}
+    ${getServicesHtml()}
+    ${getContactHtml()}
+    ${renderContactFooter()}
+  `;
+
+  // Initialize scripts
+  setTimeout(() => {
+    initShaderBackground(document.getElementById('global-shader-bg'), '#9BD8EC', '#FFF7B2');
+    initMagneticButton();
+    initHome();
+    initAbout();
+    initServices();
+    initContact();
+  }, 50);
+}
 
 // Show loading screen on first visit, then start the router
 const hasLoaded = sessionStorage.getItem('civion-loaded');
@@ -35,8 +50,8 @@ if (!hasLoaded) {
   createLoadingScreen();
   startLoadingAnimation(() => {
     sessionStorage.setItem('civion-loaded', 'true');
-    startRouter();
+    initApp();
   });
 } else {
-  startRouter();
+  initApp();
 }

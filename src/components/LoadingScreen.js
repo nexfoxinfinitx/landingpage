@@ -120,9 +120,8 @@ export function startLoadingAnimation(onComplete) {
     onComplete: () => {
       // Short pause at 100% then exit
       gsap.to(overlay, {
-        opacity: 0,
-        y: -40,
-        duration: 0.6,
+        y: '-100vh',
+        duration: 0.8,
         ease: 'power3.inOut',
         delay: 0.3,
         onComplete: () => {

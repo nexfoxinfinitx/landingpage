@@ -1,13 +1,9 @@
 import '../styles/about.css';
 import { renderNavbar, renderFooter, initMagneticButton } from '../layouts/layout.js';
 
-export function render() {
-  const app = document.getElementById('app');
-
-  app.innerHTML = `
-    ${renderNavbar()}
-    
-    <div class="about-page">
+export function getAboutHtml() {
+  return `
+    <section id="about" class="about-page">
 
       <!-- ═══════════ HERO / INTRO ═══════════ -->
       <section class="about-hero">
@@ -180,14 +176,10 @@ export function render() {
         </div>
       </section>
 
-    </div>
-
-    ${renderFooter()}
+    </section>
   `;
+}
 
-  setTimeout(() => {
-    initMagneticButton();
-  }, 50);
-
+export function initAbout() {
   return () => {};
 }

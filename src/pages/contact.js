@@ -4,13 +4,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function render() {
-  const app = document.getElementById('app');
-
-  app.innerHTML = `
-    ${renderNavbar()}
-
-    <div style="padding-top: 80px; min-height: calc(100vh - 80px); background: #12161A;">
+export function getContactHtml() {
+  return `
+    <div style="padding-top: 80px; min-height: calc(100vh - 80px); background: transparent;">
       <!-- ═══════════ CONTACT US ═══════════ -->
       <section id="contact" class="single-section contact-section">
         <div class="container">
@@ -108,57 +104,101 @@ export function render() {
         </div>
       </section>
     </div>
-
-    ${renderContactFooter()}
   `;
+}
 
-  setTimeout(() => {
-    initMagneticButton();
-
-    // Animate section header
-    gsap.fromTo('.section-label',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
-    );
-
-    gsap.fromTo('.section-title',
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.15 }
-    );
-
-    gsap.fromTo('.section-sub',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.3 }
-    );
-
-    // Animate form card
-    gsap.fromTo('.contact-form-card',
-      { opacity: 0, x: -40 },
-      { opacity: 1, x: 0, duration: 1, ease: 'power3.out', delay: 0.4 }
-    );
-
-    // Animate info cards staggered
-    gsap.fromTo('[data-anim="info"]',
-      { opacity: 0, x: 40 },
-      { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', stagger: 0.12, delay: 0.5 }
-    );
-
-    // Form submit handler
-    const form = document.getElementById('contact-form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('contact-submit-btn');
-        btn.innerHTML = `<span>Message Sent!</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-        btn.style.background = 'linear-gradient(135deg, #1a9e8e, #2ab7a8)';
-        setTimeout(() => {
-          btn.innerHTML = `<span>Send Message</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
-          btn.style.background = '';
-          form.reset();
-        }, 2500);
-      });
+export function initContact() {
+  // Use ScrollTrigger to animate as we scroll down to it
+  gsap.fromTo('.section-label',
+    { opacity: 0, y: 20 },
+    { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.8, 
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.contact-section',
+        start: 'top 80%',
+      }
     }
-  }, 50);
+  );
+
+  gsap.fromTo('.section-title',
+    { opacity: 0, y: 30 },
+    { 
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      ease: 'power3.out', 
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.contact-section',
+        start: 'top 80%',
+      }
+    }
+  );
+
+  gsap.fromTo('.section-sub',
+    { opacity: 0, y: 20 },
+    { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.8, 
+      ease: 'power3.out', 
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.contact-section',
+        start: 'top 80%',
+      }
+    }
+  );
+
+  gsap.fromTo('.contact-form-card',
+    { opacity: 0, x: -40 },
+    { 
+      opacity: 1, 
+      x: 0, 
+      duration: 1, 
+      ease: 'power3.out', 
+      delay: 0.4,
+      scrollTrigger: {
+        trigger: '.contact-section',
+        start: 'top 80%',
+      }
+    }
+  );
+
+  gsap.fromTo('[data-anim="info"]',
+    { opacity: 0, x: 40 },
+    { 
+      opacity: 1, 
+      x: 0, 
+      duration: 0.7, 
+      ease: 'power3.out', 
+      stagger: 0.12, 
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: '.contact-section',
+        start: 'top 80%',
+      }
+    }
+  );
+
+  // Form submit handler
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit-btn');
+      btn.innerHTML = `<span>Message Sent!</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+      btn.style.background = 'linear-gradient(135deg, #1a9e8e, #2ab7a8)';
+      setTimeout(() => {
+        btn.innerHTML = `<span>Send Message</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+        btn.style.background = '';
+        form.reset();
+      }, 2500);
+    });
+  }
 
   return () => {
     ScrollTrigger.getAll().forEach(t => t.kill());
